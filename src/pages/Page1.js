@@ -74,6 +74,8 @@ export default class Page1 extends React.Component {
                     navigation.navigate("Page4")
                 }}
             />
+
+
             <Button
                 title="发送get请求"
                 onPress={this.sendGetRequest

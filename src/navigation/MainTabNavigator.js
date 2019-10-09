@@ -1,94 +1,60 @@
-import React from 'react';
-import {Platform} from 'react-native';
-import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
+import React, { useState } from 'react';
+import { View, Image, Dimensions } from 'react-native';
+import {
+    createAppContainer,
+    createDrawerNavigator,
+    DrawerItems,
+} from 'react-navigation';
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import Components from "./drawer/Components";
+import Profile from './drawer/profile';
 
-import Page1 from '../pages/Page1'
-import Page3 from '../pages/Page3'
-import Page4 from '../pages/Page4'
-import Page5 from '../pages/Page5'
 
-const config = Platform.select({
-    web: {headerMode: 'screen'},
-    default: {},
-});
+const WINDOW_WIDTH = Dimensions.get('window').width;
+const CustomDrawerContentComponent = props => (
+    <View style={{ flex: 1, backgroundColor: '#43484d' }}>
+        <View
+            style={{ marginTop: 40, justifyContent: 'center', alignItems: 'center' }}
+        >
+            <Image
+                source={require('./images/logo.png')}
+                style={{ width: Math.min(WINDOW_WIDTH * 0.57, 200) }}
+                resizeMode="contain"
+            />
+        </View>
+        <View style={{ marginLeft: 10 }}>
+            <DrawerItems {...props} />
+        </View>
+    </View>
+);
 
-const HomeStack = createStackNavigator(
-    {
-        Home: {
-            screen: Page1
-        },
-        Page3:{
-            screen:Page3
-        },
-        Page4:{
-            screen:Page4
-        },
-        Page5:{
-            screen:Page5
+const MainRoot = createAppContainer(
+
+    createDrawerNavigator(
+        {
+            Components: {
+                path: '/components',
+                screen: Components,
+            },
+            Profile: {
+                path: '/profile',
+                screen: Profile,
+            },
+        },{
+            initialRouteName: 'Components',
+            contentOptions: {
+                activeTintColor: '#548ff7',
+                activeBackgroundColor: 'transparent',
+                inactiveTintColor: '#ffffff',
+                inactiveBackgroundColor: 'transparent',
+                labelStyle: {
+                    fontSize: 15,
+                    marginLeft: 0,
+                },
+            },
+            drawerWidth: Math.min(WINDOW_WIDTH * 0.8, 300),
+            contentComponent: CustomDrawerContentComponent,
         }
-    },
-    config
-);
-
-HomeStack.navigationOptions = {
-    tabBarLabel: 'Home',
-    tabBarIcon: ({focused}) => (
-        <TabBarIcon
-            focused={focused}
-            name={
-                Platform.OS === 'ios'
-                    ? `ios-information-circle${focused ? '' : '-outline'}`
-                    : 'md-information-circle'
-            }
-        />
-    ),
-};
-
-HomeStack.path = '';
-
-const LinksStack = createStackNavigator(
-    {
-        Links: LinksScreen,
-    },
-    config
-);
-
-LinksStack.navigationOptions = {
-    tabBarLabel: 'Links',
-    tabBarIcon: ({focused}) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}/>
-    ),
-};
-
-LinksStack.path = '';
-
-const SettingsStack = createStackNavigator(
-    {
-        Settings: SettingsScreen,
-    },
-    config
-);
-
-SettingsStack.navigationOptions = {
-    tabBarLabel: 'Settings',
-    tabBarIcon: ({focused}) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}/>
-    ),
-};
-
-SettingsStack.path = '';
-
-const tabNavigator = createBottomTabNavigator({
-    HomeStack,
-    LinksStack,
-    SettingsStack,
-});
-
-tabNavigator.path = '';
-
-export default tabNavigator;
+    )
+)
+export default MainRoot;
