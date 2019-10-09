@@ -30,6 +30,12 @@ export default class Login extends React.Component {
         return re.test(email);
     }
 
+    _signInAsync = async () => {
+        // await AsyncStorage.setItem('userToken', 'abc');
+        this.props.navigation.navigate('Main');
+    };
+
+
     submitLoginCredentials() {
         const { showLoading } = this.state;
 
@@ -37,6 +43,7 @@ export default class Login extends React.Component {
             showLoading: !showLoading,
         });
     }
+
 
     render() {
         const { email, password, email_valid, showLoading } = this.state;
@@ -138,7 +145,7 @@ export default class Login extends React.Component {
                                 activeOpacity={0.5}
                                 titleStyle={{ color: 'white', fontSize: 15 }}
                                 containerStyle={{ marginTop: -10 }}
-                                onPress={() => console.log('Account created')}
+                                onPress={this._signInAsync}
                             />
                         </View>
                     </View>
