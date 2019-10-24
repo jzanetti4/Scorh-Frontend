@@ -7,6 +7,7 @@ import {
     Dimensions,
 } from 'react-native';
 
+import Signup from './Signup'
 import { Input, Button, Icon } from 'react-native-elements';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -22,6 +23,7 @@ export default class Login extends React.Component {
             password: '',
             login_failed: false,
             showLoading: false,
+            isLogin: true
         };
     }
 
@@ -44,22 +46,32 @@ export default class Login extends React.Component {
         });
     }
 
+    redirectToSignup= async () => {
+        this.props.navigation.navigate("Signup")
+    }
+
 
     render() {
+
         const { email, password, email_valid, showLoading } = this.state;
         return (
+
             <View style={styles.container}>
+
                 <ImageBackground source={BG_IMAGE} style={styles.bgImage}>
+
                     <View style={styles.loginView}>
                         <View style={styles.loginTitle}>
                             <View style={{ flexDirection: 'row' }}>
-                                <Text style={styles.travelText}>TRAVEL</Text>
-                                <Text style={styles.plusText}>+</Text>
+                                <Text style={styles.travelText}>Scorh</Text>
                             </View>
-                            <View style={{ marginTop: -10 }}>
-                                <Text style={styles.travelText}>LEISURE</Text>
+
+                            <View style={{ marginTop: 20 }}>
+                                <Text style={styles.travelText}>Spinal cord research hub</Text>
                             </View>
+
                         </View>
+
                         <View style={styles.loginInput}>
                             <Input
                                 leftIcon={
@@ -122,7 +134,8 @@ export default class Login extends React.Component {
                             title="LOG IN"
                             activeOpacity={1}
                             underlayColor="transparent"
-                            onPress={this.submitLoginCredentials.bind(this)}
+                            // onPress={this.submitLoginCredentials.bind(this)}
+                            onPress={this._signInAsync}
                             loading={showLoading}
                             loadingProps={{ size: 'small', color: 'white' }}
                             disabled={!email_valid && password.length < 8}
@@ -145,7 +158,7 @@ export default class Login extends React.Component {
                                 activeOpacity={0.5}
                                 titleStyle={{ color: 'white', fontSize: 15 }}
                                 containerStyle={{ marginTop: -10 }}
-                                onPress={this._signInAsync}
+                                onPress={this.redirectToSignup}
                             />
                         </View>
                     </View>
@@ -170,12 +183,12 @@ const styles = StyleSheet.create({
     },
     loginView: {
         marginTop: 150,
-        backgroundColor: 'transparent',
+        // backgroundColor: 'transparent',
         width: 250,
         height: 400,
     },
     loginTitle: {
-        flex: 1,
+        flex: 2,
         justifyContent: 'center',
         alignItems: 'center',
     },

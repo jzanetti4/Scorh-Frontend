@@ -71,7 +71,7 @@ export default class Page1 extends React.Component {
             <Button
                 title="跳转到页面4"
                 onPress={() => {
-                    navigation.navigate("Page4")
+                    navigation.navigate("Signup")
                 }}
             />
 
