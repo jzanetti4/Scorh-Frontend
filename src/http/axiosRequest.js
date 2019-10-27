@@ -1,10 +1,11 @@
 import  axios from 'axios'
+import {stringify} from "qs";
 
 
 let defaultConfig={
-    baseURL: 'http:localhost:8090',
+    baseURL: 'http:localhost:8768',
     timeout: 3000,
-    headers: { 'Content-Type': 'application/json'}
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
 };
 
 let interceptorConfig={};//拦截配置
@@ -24,6 +25,11 @@ export  default class API{
          * **/
         instance.interceptors.request.use(function (config) {
             if (config) interceptorConfig = config;
+            console.log(config.method)
+            if (config.method === "post") {
+
+                config.data = stringify(config.data);
+            }
             return config
         }, function (error) {
             return Promise.reject(error);
@@ -49,8 +55,8 @@ export  default class API{
         if(!params || typeof (params)!='object'){
             throw new Error("params is undefined or not an object")
         }
-        if(params.method=='GET'){
 
+        if(params.method=='GET'){
             Url=params.url;
             get(Url,callback)
         }
@@ -58,7 +64,15 @@ export  default class API{
             console.log(params.method)
             Url=params.url;
             Params=params.obj;
+            // Params={
+            //     email: "yhq19950826@gmail.com",
+            //     password: "12345678",
+            //     selectedType: "child",
+            //     username: "Yhq",
+            // }
+            console.log(Params)
             post(Url,Params,callback)
+
         }
     }
 
@@ -75,6 +89,7 @@ async function get(url,callback){
 
 async function post(url,params,callback){
     try{
+        console.log('param is',params)
         let response=await instance.post(url,params);
         return  callback(response);
     }catch (e){

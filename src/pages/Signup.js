@@ -13,6 +13,10 @@ import {
     View,
 } from 'react-native';
 import { Input, Button, Icon } from 'react-native-elements';
+import API from "../http/axiosRequest";
+import {INITREG} from "../const/requestURL";
+import axios from "axios"
+
 
 const LinearGradient=undefined
 
@@ -64,17 +68,37 @@ export default class Signup extends Component {
         const passwordValid = this.validatePassword();
         const confirmationPasswordValid = this.validateConfirmationPassword();
         if (
-            emailValid &&
-            passwordValid &&
-            confirmationPasswordValid &&
-            usernameValid
+            1==1
+            // passwordValid &&
+            // confirmationPasswordValid &&
+            // usernameValid
         ) {
-            this.setState({ isLoading: true });
-            setTimeout(() => {
-                LayoutAnimation.easeInEaseOut();
-                this.setState({ isLoading: false });
-                Alert.alert('🎸', 'You rock');
-            }, 1500);
+            // this.setState({ isLoading: true });
+            // setTimeout(() => {
+            //     LayoutAnimation.easeInEaseOut();
+            //     this.setState({ isLoading: false });
+            //
+            // }, 1500);
+
+            const api=new API()
+            const object=(({username,email,password,selectedType})=>({username,email,password,selectedType}))(this.state)
+            // api.send({method: 'POST', url: SIGNUP,obj:object}, (res) => {
+            //         console.log(res)
+            //     }
+            // );
+            const data={
+                email: "yhq19951005@gmail.com",
+                password: "12345678",
+                selectedType: "child",
+                username: "Yhq",
+
+
+            }
+            api.send({method: 'POST', url: INITREG,obj:data}, (res) => {
+                    console.log(res)
+                })
+
+            Alert.alert('🎸', 'You rock');
         }
     }
 

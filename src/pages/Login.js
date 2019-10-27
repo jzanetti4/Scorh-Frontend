@@ -4,11 +4,14 @@ import {
     Text,
     View,
     ImageBackground,
-    Dimensions,
+    Dimensions, Alert,
 } from 'react-native';
+
 
 import Signup from './Signup'
 import { Input, Button, Icon } from 'react-native-elements';
+import API from "../http/axiosRequest";
+import {INITREG, LOGIN} from "../const/requestURL";
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
@@ -33,11 +36,25 @@ export default class Login extends React.Component {
     }
 
     _signInAsync = async () => {
-        // await AsyncStorage.setItem('userToken', 'abc');
-        this.props.navigation.navigate('Main');
+        const api=new API()
+        const object=(({email,password,})=>({email,password}))(this.state)
+        // api.send({method: 'POST', url: SIGNUP,obj:object}, (res) => {
+        //         console.log(res)
+        //     }
+        // );
+        const data={
+            email: "yhq19951005@gmail.com",
+            password: "12345678",
+
+        }
+        api.send({method: 'POST', url: LOGIN,obj:data}, (res) => {
+            console.log(res)
+        })
+
+        Alert.alert('🎸', 'You rock');
     };
 
-
+    
     submitLoginCredentials() {
         const { showLoading } = this.state;
 
