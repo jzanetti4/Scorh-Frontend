@@ -30,6 +30,7 @@ import API from "../http/axiosRequest";
 import {LISTALL} from "../const/requestURL";
 const { width, height } = Dimensions.get('window');
 
+
 export default class Page3 extends React.Component {
     constructor(props) {
         super(props)

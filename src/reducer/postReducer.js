@@ -9,7 +9,7 @@ const init_state={
 }
 
 var Msgqueue=[]
-export function sendMsgReducer(state=init_state,action) {
+export function postReducer(state=init_state,action) {
     switch (action.type) {
         case SUCCESS_MSG:
             Msgqueue=Msgqueue.concat(action.payload)
