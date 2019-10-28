@@ -4,7 +4,7 @@ export const SUCCESS_MSG='SUCCESS_QUERY'
 export const ERROR_MSG='ERROR'
 
 const init_state={
-    Msg:[],
+    posts:[],
     sendErr:null
 }
 

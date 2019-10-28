@@ -42,6 +42,9 @@ const HomeStack = createStackNavigator(
         Page4:{
             screen: Page4
         },
+        Page3:{
+            screen: Page3
+        }
 
 
 

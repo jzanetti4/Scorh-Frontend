@@ -34,6 +34,7 @@
     "qs": "latest"
   },
   "devDependencies": {
+    "@ant-design/react-native": "^3.2.0",
     "babel-preset-expo": "^7.0.0",
     "jest-expo": "^35.0.0"
   },
