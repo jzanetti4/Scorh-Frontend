@@ -31,7 +31,8 @@
     "redux-saga": "latest",
     "redux": "latest",
     "react-redux": "latest",
-    "qs": "latest"
+    "qs": "latest",
+    "react-native-vector-icons": "latest"
   },
   "devDependencies": {
     "@ant-design/react-native": "^3.2.0",

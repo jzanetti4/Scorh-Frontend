@@ -7,7 +7,7 @@ import {
     TouchableHighlight,
     Dimensions,
     TouchableOpacity,
-    FlatList
+    FlatList, Image
 } from 'react-native';
 
 import
@@ -17,18 +17,20 @@ import
     Button,
     Card,
     Flex,
-    Icon,
     Tabs,
     WhiteSpace,
     WingBlank,
 } from '@ant-design/react-native';
 
-import { Avatar,Divider } from 'react-native-elements'
+import {Avatar, Divider, ListItem,Icon} from 'react-native-elements'
 import px2dp from "../utils/px2dp";
 import API from "../http/axiosRequest";
 
 import {LISTALL} from "../const/requestURL";
+import List from "@ant-design/react-native/es/list";
+
 const { width, height } = Dimensions.get('window');
+
 
 
 export default class Page3 extends React.Component {
@@ -58,12 +60,71 @@ export default class Page3 extends React.Component {
     componentWillMount() {
         const api=new API()
         api.send({method: 'GET', url:LISTALL}, (res) => {
-            console.log(res)
+           this.setState({
+               data:res
+           })
         })
     }
 
     loadingData(){
+       const data =[{key: 'a'}, {key: 'b'}]
+    }
 
+    dropDown= async (childrenCommentList) =>{
+
+        console.log(childrenCommentList)
+        console.log(childrenCommentList.length)
+    }
+
+    renderItem(item){
+        return(
+        <TouchableOpacity
+            onPress={()=>this.onItemClick()}
+        >
+            <View style={styles.cell_container}>
+
+                <ListItem
+                    leftAvatar={{
+                        title: item.username,
+                        showEditButton: true,
+                    }}
+                    subtitle={item.content}
+                    chevron
+                />
+                <List containerStyle={{marginBottom: 20}}>
+                    {
+                        item.childrenCommentList.map((l) => (
+                            <ListItem
+                                roundAvatar
+                                title={l.username}
+                                key={l.postId}
+                                subtitle={l.content}
+                            />
+                        ))
+                    }
+                </List>
+                <View style={styles.row}>
+                    <View style={styles.row}>
+                        <Icon
+                            name='thumbs-up'
+                            type='font-awesome'
+                        />
+                        <Text>{item.count_thumbUp}</Text>
+
+                    </View>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <Icon
+                            name='comment'
+                            type='font-awesome'
+                            onPress={()=>this.dropDown(item.childrenCommentList)}
+                        />
+                        <Text>{item.count_comment}</Text>
+                    </View>
+
+                </View>
+            </View>
+
+        </TouchableOpacity>)
     }
 
     render() {
@@ -76,12 +137,14 @@ export default class Page3 extends React.Component {
             { title: '只看楼主' },
         ];
         return( <FlatList
-                data={[{key: 'a'}, {key: 'b'}]}
-                renderItem={({item}) => <Text>{item.key}</Text>}
+                data={this.state.data}
+                renderItem={({item}) =>this.renderItem(item)}
             />
        )
     }
 }
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
