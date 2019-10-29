@@ -1,5 +1,6 @@
 import  axios from 'axios'
 import {stringify} from "qs";
+import React from "react";
 
 
 let defaultConfig={
@@ -12,7 +13,7 @@ let interceptorConfig={};//拦截配置
 
 let instance;
 
-export  default class API{
+export  default class API {
     constructor(props){
         if(props && typeof (props)=="object"){
             instance=axios.create(props);
@@ -27,7 +28,6 @@ export  default class API{
             if (config) interceptorConfig = config;
             console.log(config.method)
             if (config.method === "post") {
-
                 config.data = stringify(config.data);
             }
             return config
@@ -48,6 +48,7 @@ export  default class API{
     }
 
 
+
     send=(params,callback)=>{
 
         let Url;
@@ -64,15 +65,8 @@ export  default class API{
             console.log(params.method)
             Url=params.url;
             Params=params.obj;
-            // Params={
-            //     email: "yhq19950826@gmail.com",
-            //     password: "12345678",
-            //     selectedType: "child",
-            //     username: "Yhq",
-            // }
             console.log(Params)
             post(Url,Params,callback)
-
         }
     }
 
@@ -81,18 +75,21 @@ export  default class API{
 async function get(url,callback){
     try{
         let response=await instance.get(url);
+        console.log("response is",response);
         return  callback(response);
     }catch (e){
-        console.log(e)
+        console.log(e.response.status)
     }
 }
 
 async function post(url,params,callback){
     try{
         console.log('param is',params)
-        let response=await instance.post(url,params);
+        let response=await instance.post(url,params)
+        console.log("response is",response)
         return  callback(response);
     }catch (e){
-        console.log(e)
+        console.log('test error')
+        console.log(e.response)
     }
 }

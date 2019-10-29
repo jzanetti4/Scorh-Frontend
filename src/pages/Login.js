@@ -36,18 +36,19 @@ export default class Login extends React.Component {
     }
 
     _signInAsync = async () => {
-        // const api=new API()
+        const api=new API()
         // const object=(({email,password,})=>({email,password}))(this.state)
         //
-        // const data={
-        //     email: "yhq19951005@gmail.com",
-        //     password: "12345678",
-        //
-        // }
-        // api.send({method: 'POST', url: LOGIN,obj:data}, (res) => {
-        //     console.log(res)
-        // })
-        //
+        const data={
+            email: "yhq19951005@gmail.com",
+            password: "12345678",
+
+        }
+
+        api.send({method: 'POST', url: LOGIN,obj:data}, (res) => {
+            console.log(res)
+        })
+
         // Alert.alert('🎸', 'You rock');
 
         this.props.navigation.navigate("Page3")

@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7ed4766-0b8f-44c2-ba06-ab617711117a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/const/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/http/axiosRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/axiosRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Page3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Page3.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -17,13 +17,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="scorh" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/Login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="152" column="42" selection-start-line="152" selection-start-column="42" selection-end-line="152" selection-end-column="42" />
+            <state relative-caret-position="169">
+              <caret line="63" selection-start-line="63" selection-end-line="63" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -34,10 +37,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/Page3.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="98" column="31" selection-start-line="98" selection-start-column="31" selection-end-line="98" selection-end-column="31" />
+            <state relative-caret-position="232">
+              <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/navigation/AuthNavigator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,28 +71,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reducer/postReducer.js">
+        <entry file="file://$PROJECT_DIR$/src/http/axiosRequest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reducer/tasks.redux.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-140" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/saga/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="75">
+              <caret line="5" selection-start-line="5" selection-end-line="9" selection-end-column="2" />
               <folding>
-                <element signature="e#0#81#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,33 +95,17 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reducer/auth.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#87#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/const/requestURL.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="20" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="20" />
+            <state relative-caret-position="90">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/const/config.js">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -136,10 +119,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>login he</find>
-      <find>leisure</find>
-      <find>lo`</find>
-      <find>defa</find>
       <find>home</find>
       <find>travel</find>
       <find>trans</find>
@@ -166,6 +145,10 @@
       <find>height</find>
       <find>icon</find>
       <find>onpress</find>
+      <find>inp</find>
+      <find>stringify</find>
+      <find>axi</find>
+      <find>obj</find>
     </findStrings>
     <replaceStrings>
       <replace>TouchableHighlight</replace>
@@ -203,11 +186,9 @@
         <option value="$PROJECT_DIR$/src/navigation/AuthNavigator.js" />
         <option value="$PROJECT_DIR$/Entry.js" />
         <option value="$PROJECT_DIR$/src/pages/Page1.js" />
-        <option value="$PROJECT_DIR$/src/http/axiosRequest.js" />
         <option value="$PROJECT_DIR$/src/pages/Signup.js" />
         <option value="$PROJECT_DIR$/src/services/tokenService.js" />
         <option value="$PROJECT_DIR$/src/navigation/drawer/Components.js" />
-        <option value="$PROJECT_DIR$/src/pages/Login.js" />
         <option value="$PROJECT_DIR$/src/const/requestURL.js" />
         <option value="$PROJECT_DIR$/src/reducer/msg.redux.js" />
         <option value="$PROJECT_DIR$/src/reducer/post.js" />
@@ -218,6 +199,9 @@
         <option value="$PROJECT_DIR$/src/reducer/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/App.js" />
+        <option value="$PROJECT_DIR$/src/http/axiosRequest.js" />
+        <option value="$PROJECT_DIR$/src/const/config.js" />
+        <option value="$PROJECT_DIR$/src/pages/Login.js" />
         <option value="$PROJECT_DIR$/src/pages/Page3.js" />
       </list>
     </option>
@@ -229,8 +213,8 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="642" />
-    <option name="width" value="798" />
+    <option name="x" value="1024" />
+    <option name="width" value="416" />
     <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -269,6 +253,12 @@
               <item name="scorh" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="const" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="scorh" type="b2602c69:ProjectViewProjectNode" />
+              <item name="scorh" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="http" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="scorh" type="b2602c69:ProjectViewProjectNode" />
@@ -365,7 +355,7 @@
       <workItem from="1572057223945" duration="473000" />
       <workItem from="1572071218756" duration="2278000" />
       <workItem from="1572134153383" duration="426000" />
-      <workItem from="1572277579401" duration="12182000" />
+      <workItem from="1572277579401" duration="26716000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1570456880503</created>
@@ -416,11 +406,18 @@
       <option name="project" value="LOCAL" />
       <updated>1572289528922</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="添加评论成功">
+      <created>1572297454529</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1572297454529</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71029000" />
+    <option name="totallyTimeSpent" value="85563000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -433,10 +430,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="828" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.4068768" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4980916" visible="true" weight="0.4068768" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Favorites" order="2" sideWeight="0.5019084" side_tool="true" weight="0.4068768" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
@@ -448,7 +446,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32880434" />
       <window_info anchor="bottom" id="RNConsole" order="9" weight="0.32880434" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.41711956" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.28804347" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="12" weight="0.32891566" />
       <window_info anchor="bottom" id="Messages" order="13" />
@@ -468,18 +466,10 @@
     <MESSAGE value="加入provider" />
     <MESSAGE value="引入第三方组件" />
     <MESSAGE value="reducer" />
-    <option name="LAST_COMMIT_MESSAGE" value="reducer" />
+    <MESSAGE value="添加评论成功" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加评论成功" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2022">
-          <caret line="9969" column="150" selection-start-line="9969" selection-start-column="150" selection-end-line="9969" selection-end-column="150" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/saga/createTaskSaga.js" />
-    <entry file="file://$PROJECT_DIR$/src/saga/proceduresSaga.js" />
     <entry file="file://$PROJECT_DIR$/src/saga/saga.js" />
     <entry file="file://$PROJECT_DIR$/src/saga/sendMessageSaga.js" />
     <entry file="file://$PROJECT_DIR$/src/Reducer/reducer.js" />
@@ -547,16 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/navigation/AuthNavigator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -595,13 +575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/axios/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="135" column="2" selection-start-line="135" selection-start-column="2" selection-end-line="135" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@types/react-native/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -636,16 +609,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/http/axiosRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/HomeScreen.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -670,13 +633,6 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/const/requestURL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -740,16 +696,6 @@
         <state relative-caret-position="-140" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/saga/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#0#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -758,6 +704,26 @@
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#126#185#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-native-vector-icons/dist/FontAwesome.js.flow">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/Signup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="141" column="4" selection-start-line="141" selection-start-column="4" selection-end-line="141" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@ant-design/react-native/es/list/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -771,23 +737,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-native-vector-icons/dist/FontAwesome.js.flow">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/Login.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/babel__core/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="152" column="42" selection-start-line="152" selection-start-column="42" selection-end-line="152" selection-end-column="42" />
+        <state relative-caret-position="166">
+          <caret line="390" column="4" selection-start-line="390" selection-start-column="4" selection-end-line="390" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/axios/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="135" column="2" selection-start-line="135" selection-start-column="2" selection-end-line="135" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/saga/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#81#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/Signup.js">
+    <entry file="file://$PROJECT_DIR$/src/navigation/AuthNavigator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="141" column="4" selection-start-line="141" selection-start-column="4" selection-end-line="141" selection-end-column="4" />
+        <state relative-caret-position="165">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/const/requestURL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/http/axiosRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="9" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/const/config.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -796,8 +803,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/Page3.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="98" column="31" selection-start-line="98" selection-start-column="31" selection-end-line="98" selection-end-column="31" />
+        <state relative-caret-position="232">
+          <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
