@@ -154,7 +154,9 @@ export default class Page1 extends React.Component {
                     this.setState({
                         userId: String(userInfo.id),
                         username:userInfo.username,
-                        displayChildPost:false
+                        displayChildPost:false,
+                        content: null,
+                        childContent:null,
                     },()=>{
                         console.log("state更新完成")
                         this.setState({
@@ -206,7 +208,7 @@ export default class Page1 extends React.Component {
         this.setState({
             content: text
         })
-        console.log(this.state.content)
+
     }
 
     setChildContent(text) {
@@ -230,14 +232,13 @@ export default class Page1 extends React.Component {
         console.log("准备提交的数据是",data)
         const api = new API()
         api.send({method: 'POST', url: APPENDPOST, obj: data}, (res) => {
-
             Alert.alert('🎸',res)
         })
         this.loadingData()
     }
 
 
-    newPost() {
+    async newPost() {
         const data = {
             parentId: null,
             username: this.state.username,
@@ -247,8 +248,9 @@ export default class Page1 extends React.Component {
         }
         const api = new API()
         api.send({method: 'POST', url: NEWPOST, obj: data}, (res) => {
-            console.log(res)
+            Alert.alert('🎸',res)
         })
+        this.loadingData()
 
     }
 
@@ -323,15 +325,23 @@ export default class Page1 extends React.Component {
     }
 
     render() {
-        const {navigation} = this.props;
-        const {state, setParams} = navigation;
-        const {params} = state;
-        const showText = params && params.mode === 'edit' ? '正在编辑' : '编辑完成';
-        const tabs = [
-            {title: '全部回复'},
-            {title: '只看楼主'},
-        ];
-        return (<FlatList
+
+
+        return (
+            <View style={styles.container}>
+            <View style={styles.row}>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={text => this.setPostContent(text)}
+                    onContentSizeChange={this._onContentSizeChange}
+                />
+                <Icon
+                    name='edit'
+                    type='font-awesome'
+                    onPress={() => this.newPost()}
+                />
+            </View>
+            <FlatList
                 data={this.state.data}
                 renderItem={({item}) => this.renderItem(item)}
                 extraData={this.state}
@@ -346,6 +356,7 @@ export default class Page1 extends React.Component {
                     />
                 }
             />
+            </View>
         )
     }
 

@@ -14,6 +14,7 @@ import Page5 from '../../pages/Page5'
 import Signup from "../../pages/Signup";
 
 
+
 const config = Platform.select({
     web: {headerMode: 'screen'},
     default: {},
