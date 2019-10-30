@@ -7,7 +7,7 @@ import {
     TouchableHighlight,
     Dimensions,
     TouchableOpacity,
-    FlatList, Image
+    FlatList, Image, Alert, RefreshControl
 } from 'react-native';
 
 import
@@ -22,6 +22,7 @@ import
     WingBlank,
 } from '@ant-design/react-native';
 
+import {colors} from '../const/colors'
 import {Avatar, Divider, ListItem, Icon} from 'react-native-elements'
 import px2dp from "../utils/px2dp";
 import API from "../http/axiosRequest";
@@ -30,6 +31,7 @@ import {APPENDPOST, LISTALL, NEWPOST} from "../const/requestURL";
 import List from "@ant-design/react-native/es/list";
 import  axios from 'axios'
 import {defaultConfig} from "../const/config";
+import {isLoading} from "expo-font";
 
 const {width, height} = Dimensions.get('window');
 
@@ -42,52 +44,64 @@ export default class Page3 extends React.Component {
         super(props)
         const {navigation} = this.props;
         this.state = {
-            refreshing: true,
-            loading: false,
-            hasScrolled: false,
-            isCommentLoadEnd: false,
-            commentPage: 0,
-            postData: {},
-            postImageList: [],
-            commentList: [],
-            clicked: 'none',
-            modalVisible: false,
-            picBtnVisible: false,
-            images: [],
-            text: '我的帖子',
-            token: '',
-            userFocused: true,
-            userId: 1,
+            parentId:null,
+            username:null,
+            userId: null,
+            type:"post",
+            content: null,
+            childContent:null,
             displayChildPost: false,
-            content: ""
-
+            isLoading:false
         }
     }
 
-    componentWillMount() {
-            // const api = new API()
-            // api.send({method: 'GET', url: LISTALL}, (res) => {
-            //     console.log(res.status)
-            //     this.setState({
-            //         data: res
-            //     })
-            // })
 
-        axios.get(LISTALL,
-           defaultConfig
-        )
-            .then(response => {
-                this.setState({
-                    data:response.data
+    async loadingData(){
+         // this.setState({isRefreshing: true});
+        setTimeout(() => {
+            axios.get(LISTALL,
+                defaultConfig
+            )
+                .then(response => {
+                    this.setState({
+                        data:response.data
+                    })
+                    // console.log("头部信息",response.headers)
+                    const {userinfo}=response.headers
+                    // console.log('用户信息',userinfo)
+                    const userInfo = JSON.parse(userinfo)
+                    // console.log('转化后info',userInfo)
+                    this.setState({
+                        userId: String(userInfo.id),
+                        username:userInfo.username,
+                        displayChildPost:false
+                    },()=>{
+                        console.log("state更新完成")
+                        this.setState({
+                            isLoading:false
+                        },()=>{
+                            console.log("isLoading状态",this.state.isLoading)
+                        })
+                    })
                 })
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error.response.status)
-                if(error.response.status==401){
-                    this.props.navigation.navigate("Login")
-                }
-            });
+                .catch(error => {
+                    if(error.response.status==401){
+                        console.log(error.response.status)
+                        this.props.navigation.navigate("Login")
+                        this.setState({
+                            isLoading:false
+                        })
+                    }else{
+                        console.log(error)
+                    }
+                });
+        },1000)
+
+
+    }
+
+    componentWillMount() {
+        this.loadingData()
     }
 
 
@@ -112,22 +126,34 @@ export default class Page3 extends React.Component {
         this.setState({
             content: text
         })
-
         console.log(this.state.content)
     }
 
-    appendPost() {
+    setChildContent(text) {
+        this.setState({
+            childContent: text
+        })
+        console.log(this.state.childContent)
+    }
+
+
+
+    async appendPost(item) {
         const data = {
-            parentId: this.state.parentId,
+            parentId:item.postId,
             username: this.state.username,
             userId: this.state.userId,
             type: "post",
             content: this.state.childContent
         }
+
+        console.log("准备提交的数据是",data)
         const api = new API()
         api.send({method: 'POST', url: APPENDPOST, obj: data}, (res) => {
-            console.log(res)
+
+            Alert.alert('🎸',res)
         })
+        this.loadingData()
     }
 
 
@@ -195,13 +221,13 @@ export default class Page3 extends React.Component {
                         <View style={styles.row}>
                             <TextInput
                                 style={styles.input}
-                                onChangeText={text => this.setPostContent(text)}
+                                onChangeText={text => this.setChildContent(text)}
                                 onContentSizeChange={this._onContentSizeChange}
                             />
                             <Icon
                                 name='edit'
                                 type='font-awesome'
-                                onPress={() => this.appendPost()}
+                                onPress={() => this.appendPost(item)}
                             />
                         </View>
                     </List></View> : null}
@@ -229,6 +255,16 @@ export default class Page3 extends React.Component {
                 data={this.state.data}
                 renderItem={({item}) => this.renderItem(item)}
                 extraData={this.state}
+                refreshControl={
+                    <RefreshControl
+                        title={'Loading'}
+                        titleColor={colors.Blue}
+                        colors={[colors.Blue]}
+                        refreshing={this.state.isLoading}
+                        onRefresh={this.loadingData.bind(this)}
+                        tintColor={colors.Black}
+                    />
+                }
             />
         )
     }

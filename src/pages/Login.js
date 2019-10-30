@@ -51,7 +51,7 @@ export default class Login extends React.Component {
 
         // Alert.alert('🎸', 'You rock');
 
-        this.props.navigation.navigate("Page3")
+        this.props.navigation.navigate("Home")
     };
 
 

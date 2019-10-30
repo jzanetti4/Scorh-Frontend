@@ -39,7 +39,7 @@ export  default class API {
          * @return
          * **/
         instance.interceptors.response.use(function (response) {
-            console.log('Data [响应拦截器]:', response.data);
+
             return response.data
         }, function (error) {
             // Do something with response error
@@ -62,10 +62,10 @@ export  default class API {
             get(Url,callback)
         }
         else if(params.method=='POST'){
-            console.log(params.method)
+
             Url=params.url;
             Params=params.obj;
-            console.log(Params)
+
             post(Url,Params,callback)
         }
     }
@@ -75,21 +75,19 @@ export  default class API {
 async function get(url,callback){
     try{
         let response=await instance.get(url);
-        console.log("response is",response);
+
         return  callback(response);
     }catch (e){
-        console.log(e.response.status)
+
     }
 }
 
 async function post(url,params,callback){
     try{
-        console.log('param is',params)
+
         let response=await instance.post(url,params)
-        console.log("response is",response)
         return  callback(response);
     }catch (e){
-        console.log('test error')
-        console.log(e.response)
+
     }
 }
