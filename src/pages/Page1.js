@@ -10,6 +10,8 @@ import {
     FlatList, Image, Alert, RefreshControl
 } from 'react-native';
 
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 import
 {
     ActionSheet,
@@ -27,12 +29,12 @@ import {Avatar, Divider, ListItem, Icon} from 'react-native-elements'
 import px2dp from "../utils/px2dp";
 import API from "../http/axiosRequest";
 
-import {APPENDPOST, LISTALL, NEWPOST} from "../const/requestURL";
+import {APPENDPOST, FINDBYCONTENT, FINDBYUSERNAME, FINDYTYPE, LISTALL, NEWPOST} from "../const/requestURL";
 import List from "@ant-design/react-native/es/list";
 import  axios from 'axios'
 import {defaultConfig} from "../const/config";
-import {isLoading} from "expo-font";
-
+import { Dropdown } from 'react-native-material-dropdown';
+import { SearchBar } from 'react-native-elements';
 const {width, height} = Dimensions.get('window');
 
 
@@ -120,6 +122,8 @@ export default class Page1 extends React.Component {
 //     }
 
 
+
+
     constructor(props) {
         super(props)
         const {navigation} = this.props;
@@ -131,9 +135,59 @@ export default class Page1 extends React.Component {
             content: null,
             childContent:null,
             displayChildPost: false,
-            isLoading:false
+            isLoading:false,
+
+            searchUser:"",
+            searchContent:"",
+            searchType:""
         }
     }
+
+
+    async searchByuser(user) {
+        this.setState({
+            searchUser:user
+        })
+        const api=new API()
+        console.log(FINDBYUSERNAME+this.state.searchUser)
+        api.send({method: 'GET', url: FINDBYUSERNAME+user}, (res) => {
+            this.setState({
+                data:res
+            })
+            }
+        );
+    }
+    async searchByContent(content) {
+        this.setState({
+            searchContent:content
+        })
+        console.log(FINDBYCONTENT+content)
+        const api=new API()
+        api.send({method: 'GET', url: FINDBYCONTENT+content}, (res) => {
+                console.log(res)
+                this.setState({
+                    data:res
+                })
+            }
+        );
+    }
+
+    async searchByType(type) {
+
+        console.log(FINDBYUSERNAME+type)
+        const api=new API()
+        api.send({method: 'GET', url: FINDYTYPE+type}, (res) => {
+            this.setState({
+                data:res
+            })
+            }
+        );
+    }
+
+
+
+
+
 
 
     async loadingData(){
@@ -178,8 +232,6 @@ export default class Page1 extends React.Component {
                     }
                 });
         },1000)
-
-
     }
 
     componentWillMount() {
@@ -251,7 +303,6 @@ export default class Page1 extends React.Component {
             Alert.alert('🎸',res)
         })
         this.loadingData()
-
     }
 
 
@@ -266,7 +317,7 @@ export default class Page1 extends React.Component {
                             title: item.username,
                             showEditButton: true,
                         }}
-                        subtitle={item.content}
+                        subtitle={"/"+item.type+"/           "+item.content}
                         chevron
                     />
 
@@ -294,7 +345,7 @@ export default class Page1 extends React.Component {
                             item.childrenCommentList.map((l) => (
                                 <ListItem
                                     roundAvatar
-                                    title={l.username+"         "+l.type+"                         "+this.timeTrim(l.updateTime)}
+                                    title={l.username+"         "+l.type+"                  "+this.timeTrim(l.updateTime)}
                                     key={l.postId}
                                     subtitle={l.content}
                                 />
@@ -326,7 +377,13 @@ export default class Page1 extends React.Component {
 
     render() {
 
-
+        const data=[{
+            value: 'post',
+        }, {
+            value: 'News',
+        }, {
+            value: 'Event',
+        }]
         return (
             <View style={styles.container}>
             <View style={styles.row}>
@@ -334,6 +391,14 @@ export default class Page1 extends React.Component {
                     style={styles.input}
                     onChangeText={text => this.setPostContent(text)}
                     onContentSizeChange={this._onContentSizeChange}
+                    placeholder={"publish your post here"}
+                    placeholderTextColor={colors.Grey}
+                />
+
+                <Dropdown
+                    data={data}
+                    containerStyle={{width: 90}}
+                    onChangeText={(value)=>{this.setState({type:value})}}
                 />
                 <Icon
                     name='edit'
@@ -341,6 +406,29 @@ export default class Page1 extends React.Component {
                     onPress={() => this.newPost()}
                 />
             </View>
+                <View style={styles.row}>
+                    <SearchBar
+                        placeholder="search user"
+                        onChangeText={(value)=>this.searchByuser(value)}
+                        containerStyle={{width:SCREEN_WIDTH}}
+                        value={this.state.searchUser}
+                    />
+                </View>
+                <View style={styles.row}>
+                    <SearchBar
+                        placeholder="search content"
+                        onChangeText={(value)=>this.searchByContent(value)}
+                        containerStyle={{width:SCREEN_WIDTH}}
+                        value={this.state.searchContent}
+                    />
+                </View>
+                <View style={styles.row}>
+                <Dropdown
+                    data={data}
+                    containerStyle={{width: SCREEN_WIDTH}}
+                    onChangeText={(value)=>{this.searchByType(value)}}
+                />
+                </View>
             <FlatList
                 data={this.state.data}
                 renderItem={({item}) => this.renderItem(item)}
@@ -361,7 +449,8 @@ export default class Page1 extends React.Component {
     }
 
 
- }
+
+}
 
 
 const styles = StyleSheet.create({
@@ -373,7 +462,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginBottom: 10,
         borderColor: 'black',
-        width: 300
+        width: 250
     },
     container: {
         flex: 1,

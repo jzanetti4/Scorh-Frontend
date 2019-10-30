@@ -4,15 +4,14 @@ import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 
 import TabBarIcon from '../../components/TabBarIcon';
 import HomeScreen from '../../screens/HomeScreen';
-import LinksScreen from '../../screens/LinksScreen';
-import SettingsScreen from '../../screens/SettingsScreen';
-import { Icon } from 'react-native-elements';
+import Group from '../../screens/GroupScreen';
+import Member from '../../screens/MemberScreen';
+import {Icon} from 'react-native-elements';
 import Page1 from '../../pages/Page1'
 import Page3 from '../../pages/Page3'
 import Page4 from '../../pages/Page4'
 import Page5 from '../../pages/Page5'
 import Signup from "../../pages/Signup";
-
 
 
 const config = Platform.select({
@@ -22,33 +21,27 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
     {
-
-
         Home: {
-            navigationOptions: ({ navigation }) => ({
+            navigationOptions: ({navigation}) => ({
                 title: 'NoticeBoard',
                 headerLeft: (
                     <Icon
                         name="menu"
                         size={30}
                         type="entypo"
-                        containerStyle={{ marginLeft: 10 }}
+                        containerStyle={{marginLeft: 10}}
                         onPress={navigation.toggleDrawer}
                     />),
-                }),
+            }),
             screen: Page1
         },
 
-
-        Page4:{
+        Page4: {
             screen: Page4
         },
-        Page3:{
+        Page3: {
             screen: Page3
         }
-
-
-
 
 
     },
@@ -56,7 +49,7 @@ const HomeStack = createStackNavigator(
 
 HomeStack.navigationOptions = {
     drawerLabel: 'Component',
-    drawerIcon: ({ tintColor }) => (
+    drawerIcon: ({tintColor}) => (
         <Icon
             name="person"
             size={30}
@@ -83,37 +76,101 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = '';
 
-const LinksStack = createStackNavigator(
-    {
-        Links: LinksScreen,
-    },
-    config
-);
-
-LinksStack.navigationOptions = {
-    tabBarLabel: 'Groups',
-    tabBarIcon: ({focused}) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}/>
-    ),
-};
-
-LinksStack.path = '';
-
 const SettingsStack = createStackNavigator(
     {
-        Settings: SettingsScreen,
-    },
-    config
+        Home: {
+            navigationOptions: ({navigation}) => ({
+                title: 'Member',
+                headerLeft: (
+                    <Icon
+                        name="menu"
+                        size={30}
+                        type="entypo"
+                        containerStyle={{marginLeft: 10}}
+                        onPress={navigation.toggleDrawer}
+                    />),
+            }),
+            screen: Member
+        },
+    }
 );
 
 SettingsStack.navigationOptions = {
-    tabBarLabel: 'Members',
+    drawerLabel: 'Component',
+    drawerIcon: ({tintColor}) => (
+        <Icon
+            name="person"
+            size={30}
+            iconStyle={{
+                width: 30,
+                height: 30,
+            }}
+            type="material"
+            color={tintColor}
+        />
+    ),
+    tabBarLabel: 'Member',
     tabBarIcon: ({focused}) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}/>
+        <TabBarIcon
+            focused={focused}
+            name={
+                Platform.OS === 'ios'
+                    ? `ios-information-circle${focused ? '' : '-outline'}`
+                    : 'md-information-circle'
+            }
+        />
     ),
 };
-
 SettingsStack.path = '';
+
+
+const LinksStack = createStackNavigator(
+    {
+        Home: {
+            navigationOptions: ({navigation}) => ({
+                title: 'Group',
+                headerLeft: (
+                    <Icon
+                        name="menu"
+                        size={30}
+                        type="entypo"
+                        containerStyle={{marginLeft: 10}}
+                        onPress={navigation.toggleDrawer}
+                    />),
+            }),
+            screen: Group
+        },
+    }
+);
+
+LinksStack.navigationOptions = {
+    drawerLabel: 'Component',
+    drawerIcon: ({tintColor}) => (
+        <Icon
+            name="person"
+            size={30}
+            iconStyle={{
+                width: 30,
+                height: 30,
+            }}
+            type="material"
+            color={tintColor}
+        />
+    ),
+    tabBarLabel: 'Group',
+    tabBarIcon: ({focused}) => (
+        <TabBarIcon
+            focused={focused}
+            name={
+                Platform.OS === 'ios'
+                    ? `ios-information-circle${focused ? '' : '-outline'}`
+                    : 'md-information-circle'
+            }
+        />
+    ),
+};
+LinksStack.path=''
+
 
 const components = createBottomTabNavigator({
     HomeStack,
@@ -125,13 +182,13 @@ components.path = '';
 
 export default createStackNavigator(
     {
-        ComponentsTabs: { screen: components },
+        ComponentsTabs: {screen: components},
     },
     {
         headerMode: 'none',
         navigationOptions: {
             drawerLabel: 'Components',
-            drawerIcon: ({ tintColor }) => (
+            drawerIcon: ({tintColor}) => (
                 <Icon
                     name="settings"
                     size={30}

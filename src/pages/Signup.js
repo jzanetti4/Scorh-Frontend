@@ -62,16 +62,17 @@ export default class Signup extends Component {
 
 
     signup() {
+
         LayoutAnimation.easeInEaseOut();
         const usernameValid = this.validateUsername();
         const emailValid = this.validateEmail();
         const passwordValid = this.validatePassword();
         const confirmationPasswordValid = this.validateConfirmationPassword();
         if (
-            1==1
-            // passwordValid &&
-            // confirmationPasswordValid &&
-            // usernameValid
+
+            passwordValid &&
+            confirmationPasswordValid &&
+            usernameValid && emailValid
         ) {
             // this.setState({ isLoading: true });
             // setTimeout(() => {
@@ -81,24 +82,36 @@ export default class Signup extends Component {
             // }, 1500);
 
             const api=new API()
-            const object=(({username,email,password,selectedType})=>({username,email,password,selectedType}))(this.state)
-            // api.send({method: 'POST', url: SIGNUP,obj:object}, (res) => {
-            //         console.log(res)
-            //     }
-            // );
-            const data={
-                email: "yhq19951005@gmail.com",
-                password: "12345678",
-                selectedType: "child",
-                username: "Yhq",
+            const data=(({username,email,password,selectedType})=>({username,email,password,selectedType}))(this.state)
 
-
-            }
+            // const data={
+            //     email: "yhq19951005@gmail.com",
+            //     password: "12345678",
+            //     selectedType: "child",
+            //     username: "Yhq",
+            //
+            //
+            // }
             api.send({method: 'POST', url: INITREG,obj:data}, (res) => {
+
+                this.setState({
+                    isLoading: false
+                },()=>{
                     console.log(res)
+                    console.log(String(res)=="email has been sent")
+                    console.log(String(res)=="email has already been registed")
+                    Alert.alert('🎸', res);
+                    if(String(res)=="email has been sent" || String(res)=="email has already been registed"){
+                        console.log('got is')
+                        this.props.navigation.navigate("Login")
+                    }
                 })
 
-            Alert.alert('🎸', 'You rock');
+                })
+            this.setState({
+                isLoading: true
+            })
+
         }
     }
 
@@ -172,25 +185,25 @@ export default class Signup extends Component {
                     <Text style={styles.whoAreYouText}>WHO YOU ARE ?</Text>
                     <View style={styles.userTypesContainer}>
                         <UserTypeItem
-                            label="COOL"
+                            label="RESEARCHER"
                             labelColor="#ECC841"
                             image={USER_COOL}
-                            onPress={() => this.setSelectedType('parent')}
-                            selected={selectedType === 'parent'}
+                            onPress={() => this.setSelectedType('researcher')}
+                            selected={selectedType === 'researcher'}
                         />
                         <UserTypeItem
                             label="STUDENT"
                             labelColor="#2CA75E"
                             image={USER_STUDENT}
-                            onPress={() => this.setSelectedType('child')}
-                            selected={selectedType === 'child'}
+                            onPress={() => this.setSelectedType('student')}
+                            selected={selectedType === 'student'}
                         />
                         <UserTypeItem
-                            label="HARRY POTTER"
+                            label="CUSTOMER"
                             labelColor="#36717F"
                             image={USER_HP}
-                            onPress={() => this.setSelectedType('teacher')}
-                            selected={selectedType === 'teacher'}
+                            onPress={() => this.setSelectedType('customer')}
+                            selected={selectedType === 'customer'}
                         />
                     </View>
                     <View style={{ width: '80%', alignItems: 'center' }}>
@@ -276,7 +289,9 @@ export default class Signup extends Component {
                         ViewComponent={LinearGradient}
                         titleStyle={styles.signUpButtonText}
                         onPress={this.signup}
-                        disabled={isLoading}
+                        // disabled={isLoading}
+
+
                     />
                 </KeyboardAvoidingView>
 
