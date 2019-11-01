@@ -9,9 +9,6 @@ import axios from "axios";
 import {FINDALLUSERS, LISTALL} from "../const/requestURL";
 import {defaultConfig} from "../const/config";
 
-import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
-import LinearGradient from 'react-native-linear-gradient'; // Only if no expo
-
 
 
 export default class MemberScreen extends React.Component {
@@ -79,8 +76,6 @@ export default class MemberScreen extends React.Component {
                 <View style={styles.cell_container}>
 
                     <ListItem
-                        ViewComponent={LinearGradient}
-                        Component={TouchableScale}
                         leftAvatar={{
                             title: item.username,
                             showEditButton: true,
