@@ -1,3 +1,7 @@
+/**
+ * colors used in this project
+ * @type {{Brown: string, Cyan: string, Amber: string, Blue: string, Black: string, Default: string, Orange: string, DeepOrange: string, Red: string, Lime: string, Pink: string, DeepPurple: string, Purple: string, Yellow: string, LightBlue: string, Teal: string, Indigo: string, LightGreen: string, Green: string, Grey: string, BlueGrey: string}}
+ */
 export const colors = {
     Default: '#2196F3',
     Red: '#F44336',

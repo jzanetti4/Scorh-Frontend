@@ -1,16 +1,25 @@
 import React from 'react';
-import {ExpoConfigView} from '@expo/samples';
 
-import {FlatList, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+
+import {FlatList, RefreshControl, StyleSheet, TouchableOpacity, View} from "react-native";
 import {colors} from "../const/colors";
 import px2dp from "../utils/px2dp";
 import {ListItem} from "react-native-elements";
 import axios from "axios";
-import {FINDALLGROUP, FINDALLUSERS, LISTALL} from "../const/requestURL";
+import {FINDALLGROUP} from "../const/requestURL";
 import {defaultConfig} from "../const/config";
 
-export default class MemberScreen extends React.Component {
 
+
+/**
+ * Group Screen to show all the members in mysql
+ * @description: Group Screen
+ * @author: Hangqi Yu
+ * @date: Created in 2019-10-10 16:21
+ * @version: V1.0
+ * @modified: Hangqi Yu
+ */
+export default class MemberScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -27,7 +36,7 @@ export default class MemberScreen extends React.Component {
   }
 
   async loadingData() {
-    // this.setState({isRefreshing: true});
+
     setTimeout(() => {
       axios.get(FINDALLGROUP,
           defaultConfig
@@ -37,20 +46,18 @@ export default class MemberScreen extends React.Component {
             this.setState({
               data: response.data
             })
-            // console.log("头部信息",response.headers)
+
             const {userinfo} = response.headers
-            // console.log('用户信息',userinfo)
+
             const userInfo = JSON.parse(userinfo)
             // console.log('转化后info',userInfo)
             this.setState({
               userId: String(userInfo.id),
               username: userInfo.username,
             }, () => {
-              console.log("state更新完成")
               this.setState({
                 isLoading: false
               }, () => {
-                console.log("isLoading状态", this.state.isLoading)
               })
             })
           })

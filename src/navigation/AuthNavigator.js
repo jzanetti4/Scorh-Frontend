@@ -1,12 +1,15 @@
 import Login from '../pages/Login'
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
-import {Icon} from "react-native-elements";
+
 
 
 import Signup from '../pages/Signup'
 
+/**
+ * AuthNavigator before for user to validate their authentication
+ * @type {NavigationContainer}
+ */
 export  const AuthNavigator = createSwitchNavigator({
 
     Login:{

@@ -1,29 +1,35 @@
-import  axios from 'axios'
+import axios from 'axios'
 import {stringify} from "qs";
 import React from "react";
 
 
-let defaultConfig={
+/**
+ * axios default config
+ * @type {{headers: {"Content-Type": string}, baseURL: string, timeout: number}}
+ */
+
+let defaultConfig = {
     baseURL: 'http:localhost:8768',
     timeout: 3000,
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 };
 
-let interceptorConfig={};//拦截配置
-
+let interceptorConfig = {};
 let instance;
 
-export  default class API {
-    constructor(props){
-        if(props && typeof (props)=="object"){
-            instance=axios.create(props);
-        }else{
-            instance=axios.create(defaultConfig);
+export default class API {
+    constructor(props) {
+        if (props && typeof (props) == "object") {
+            instance = axios.create(props);
+        } else {
+            instance = axios.create(defaultConfig);
         }
+
         /**
-         * 请求拦截器 进行相关参数校验，控制是否继续当次请求
+         * request interceptor
          * @return
          * **/
+
         instance.interceptors.request.use(function (config) {
             if (config) interceptorConfig = config;
             console.log(config.method)
@@ -34,8 +40,9 @@ export  default class API {
         }, function (error) {
             return Promise.reject(error);
         });
+
         /**
-         * 响应拦截器，打印日志，简单的结果解析
+         * response interceptor
          * @return
          * **/
         instance.interceptors.response.use(function (response) {
@@ -48,46 +55,62 @@ export  default class API {
     }
 
 
-
-    send=(params,callback)=>{
+    /**
+     * send API
+     * @param params
+     * @param callback
+     */
+    send = (params, callback) => {
 
         let Url;
         let Params;
-        if(!params || typeof (params)!='object'){
+        if (!params || typeof (params) != 'object') {
             throw new Error("params is undefined or not an object")
         }
 
-        if(params.method=='GET'){
-            Url=params.url;
-            get(Url,callback)
-        }
-        else if(params.method=='POST'){
+        if (params.method == 'GET') {
+            Url = params.url;
+            get(Url, callback)
+        } else if (params.method == 'POST') {
 
-            Url=params.url;
-            Params=params.obj;
+            Url = params.url;
+            Params = params.obj;
 
-            post(Url,Params,callback)
+            post(Url, Params, callback)
         }
     }
 
 }
 
-async function get(url,callback){
-    try{
-        let response=await instance.get(url);
+/**
+ *
+ * @param url
+ * @param callback
+ * @returns {Promise<*>}
+ */
+async function get(url, callback) {
+    try {
+        let response = await instance.get(url);
 
-        return  callback(response);
-    }catch (e){
+        return callback(response);
+    } catch (e) {
 
     }
 }
 
-async function post(url,params,callback){
-    try{
+/**
+ *
+ * @param url
+ * @param params
+ * @param callback
+ * @returns {Promise<*>}
+ */
+async function post(url, params, callback) {
+    try {
 
-        let response=await instance.post(url,params)
-        return  callback(response);
-    }catch (e){
+        let response = await instance.post(url, params)
+        return callback(response);
+    } catch (e) {
 
     }
 }

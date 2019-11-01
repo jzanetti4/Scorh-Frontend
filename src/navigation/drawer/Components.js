@@ -3,15 +3,13 @@ import {Platform} from 'react-native';
 import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 
 import TabBarIcon from '../../components/TabBarIcon';
-import HomeScreen from '../../screens/HomeScreen';
 import Group from '../../screens/GroupScreen';
 import Member from '../../screens/MemberScreen';
 import {Icon} from 'react-native-elements';
 import Page1 from '../../pages/Page1'
-import Page3 from '../../pages/Page3'
-import Page4 from '../../pages/Page4'
-import Page5 from '../../pages/Page5'
-import Signup from "../../pages/Signup";
+
+
+
 
 
 const config = Platform.select({
@@ -36,12 +34,8 @@ const HomeStack = createStackNavigator(
             screen: Page1
         },
 
-        Page4: {
-            screen: Page4
-        },
-        Page3: {
-            screen: Page3
-        }
+
+
 
 
     },

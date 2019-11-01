@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     StyleSheet,
     Text,
@@ -6,17 +6,19 @@ import {
     ImageBackground,
     Dimensions, Alert,
 } from 'react-native';
-
-
 import Signup from './Signup'
-import { Input, Button, Icon } from 'react-native-elements';
+import {Input, Button, Icon} from 'react-native-elements';
 import API from "../http/axiosRequest";
 import {INITREG, LOGIN} from "../const/requestURL";
+
+
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
-
 const BG_IMAGE = require('../../assets/images/bg_screen1.jpg');
 
+/**
+ * this is the page for login
+ */
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -36,44 +38,36 @@ export default class Login extends React.Component {
     }
 
     _signInAsync = async () => {
-        const api=new API()
-        const data=(({email,password,})=>({email,password}))(this.state)
-        //
-        // const data={
-        //     email: "yhq19951005@gmail.com",
-        //     password: "12345678",
-        //
-        // }
-
-        api.send({method: 'POST', url: LOGIN,obj:data}, (res) => {
-            if(res.code==0){
+        const api = new API()
+        const data = (({email, password,}) => ({email, password}))(this.state)
+        api.send({method: 'POST', url: LOGIN, obj: data}, (res) => {
+            if (res.code == 0) {
                 this.props.navigation.navigate("Home")
-            }else{
+            } else {
                 Alert.alert('🎸', res.msg);
             }
         })
-
-
 
 
     };
 
 
     submitLoginCredentials() {
-        const { showLoading } = this.state;
+        const {showLoading} = this.state;
         this.setState({
             showLoading: !showLoading,
         });
     }
 
-    redirectToSignup= async () => {
+
+    redirectToSignup = async () => {
         this.props.navigation.navigate("Signup")
     }
 
 
     render() {
 
-        const { email, password, email_valid, showLoading } = this.state;
+        const {email, password, email_valid, showLoading} = this.state;
         return (
 
             <View style={styles.container}>
@@ -82,11 +76,11 @@ export default class Login extends React.Component {
 
                     <View style={styles.loginView}>
                         <View style={styles.loginTitle}>
-                            <View style={{ flexDirection: 'row' }}>
+                            <View style={{flexDirection: 'row'}}>
                                 <Text style={styles.travelText}>Scorh</Text>
                             </View>
 
-                            <View style={{ marginTop: 20 }}>
+                            <View style={{marginTop: 20}}>
                                 <Text style={styles.travelText}>Spinal cord research hub</Text>
                             </View>
 
@@ -102,10 +96,10 @@ export default class Login extends React.Component {
                                         size={25}
                                     />
                                 }
-                                containerStyle={{ marginVertical: 10 }}
-                                onChangeText={email => this.setState({ email })}
+                                containerStyle={{marginVertical: 10}}
+                                onChangeText={email => this.setState({email})}
                                 value={email}
-                                inputStyle={{ marginLeft: 10, color: 'white' }}
+                                inputStyle={{marginLeft: 10, color: 'white'}}
                                 keyboardAppearance="light"
                                 placeholder="Email"
                                 autoFocus={false}
@@ -115,12 +109,12 @@ export default class Login extends React.Component {
                                 returnKeyType="next"
                                 ref={input => (this.emailInput = input)}
                                 onSubmitEditing={() => {
-                                    this.setState({ email_valid: this.validateEmail(email) });
+                                    this.setState({email_valid: this.validateEmail(email)});
                                     this.passwordInput.focus();
                                 }}
                                 blurOnSubmit={false}
                                 placeholderTextColor="white"
-                                errorStyle={{ textAlign: 'center', fontSize: 12 }}
+                                errorStyle={{textAlign: 'center', fontSize: 12}}
                                 errorMessage={
                                     email_valid ? null : 'Please enter a valid email address'
                                 }
@@ -134,10 +128,10 @@ export default class Login extends React.Component {
                                         size={25}
                                     />
                                 }
-                                containerStyle={{ marginVertical: 10 }}
-                                onChangeText={password => this.setState({ password })}
+                                containerStyle={{marginVertical: 10}}
+                                onChangeText={password => this.setState({password})}
                                 value={password}
-                                inputStyle={{ marginLeft: 10, color: 'white' }}
+                                inputStyle={{marginLeft: 10, color: 'white'}}
                                 secureTextEntry={true}
                                 keyboardAppearance="light"
                                 placeholder="Password"
@@ -157,7 +151,7 @@ export default class Login extends React.Component {
                             // onPress={this.submitLoginCredentials.bind(this)}
                             onPress={this._signInAsync}
                             loading={showLoading}
-                            loadingProps={{ size: 'small', color: 'white' }}
+                            loadingProps={{size: 'small', color: 'white'}}
                             disabled={!email_valid && password.length < 8}
                             buttonStyle={{
                                 height: 50,
@@ -167,17 +161,17 @@ export default class Login extends React.Component {
                                 borderColor: 'white',
                                 borderRadius: 30,
                             }}
-                            containerStyle={{ marginVertical: 10 }}
-                            titleStyle={{  color: 'white' }}
+                            containerStyle={{marginVertical: 10}}
+                            titleStyle={{color: 'white'}}
                         />
                         <View style={styles.footerView}>
-                            <Text style={{ color: 'grey' }}>New here?</Text>
+                            <Text style={{color: 'grey'}}>New here?</Text>
                             <Button
                                 title="Create an Account"
                                 type="clear"
                                 activeOpacity={0.5}
-                                titleStyle={{ color: 'white', fontSize: 15 }}
-                                containerStyle={{ marginTop: -10 }}
+                                titleStyle={{color: 'white', fontSize: 15}}
+                                containerStyle={{marginTop: -10}}
                                 onPress={this.redirectToSignup}
                             />
                         </View>
@@ -203,7 +197,6 @@ const styles = StyleSheet.create({
     },
     loginView: {
         marginTop: 150,
-        // backgroundColor: 'transparent',
         width: 250,
         height: 400,
     },

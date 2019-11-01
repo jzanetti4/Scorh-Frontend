@@ -11,6 +11,14 @@ import {defaultConfig} from "../const/config";
 
 
 
+/**
+ * MemberScreen to show all the members in mysql
+ * @description: MemberScreen
+ * @author: Hangqi Yu
+ * @date: Created in 2019-10-10 16:21
+ * @version: V1.0
+ * @modified: Hangqi Yu
+ */
 export default class MemberScreen extends React.Component {
 
     constructor(props) {

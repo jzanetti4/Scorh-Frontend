@@ -15,22 +15,23 @@ import {
 import { Input, Button, Icon } from 'react-native-elements';
 import API from "../http/axiosRequest";
 import {INITREG} from "../const/requestURL";
-import axios from "axios"
+
 
 
 const LinearGradient=undefined
-
-// Enable LayoutAnimation on Android
 UIManager.setLayoutAnimationEnabledExperimental &&
 UIManager.setLayoutAnimationEnabledExperimental(true);
-
 const USER_COOL = require('../../assets/images/user-cool.png');
 const USER_STUDENT = require('../../assets/images/user-student.png');
 const USER_HP = require('../../assets/images/user-hp.png');
-
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
+/**
+ * this is the page for sign up
+ * created by Hangqi Yu
+ * c
+ */
 export default class Signup extends Component {
     constructor(props) {
         super(props);
@@ -74,24 +75,11 @@ export default class Signup extends Component {
             confirmationPasswordValid &&
             usernameValid && emailValid
         ) {
-            // this.setState({ isLoading: true });
-            // setTimeout(() => {
-            //     LayoutAnimation.easeInEaseOut();
-            //     this.setState({ isLoading: false });
-            //
-            // }, 1500);
+
 
             const api=new API()
             const data=(({username,email,password,selectedType})=>({username,email,password,selectedType}))(this.state)
 
-            // const data={
-            //     email: "yhq19951005@gmail.com",
-            //     password: "12345678",
-            //     selectedType: "child",
-            //     username: "Yhq",
-            //
-            //
-            // }
             api.send({method: 'POST', url: INITREG,obj:data}, (res) => {
 
                 this.setState({
